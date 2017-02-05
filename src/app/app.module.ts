@@ -29,9 +29,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     tokenName: 'token',
         tokenGetter: (() => localStorage.getItem('id_token')),
-        globalHeaders: [{'Content-Type':'application/json'}],
-        headerPrefix: '',
-        noTokenScheme: true
+        globalHeaders: [{'Content-Type':'application/json'}]
     }), http, options);
 }
 
