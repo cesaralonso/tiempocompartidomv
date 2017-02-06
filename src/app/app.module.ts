@@ -19,11 +19,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService }  from "./shared/auth.service";
 import { AuthGuard }  from './shared/auth.guard';
 
-import { HttpModule, Http, RequestOptions } from '@angular/http';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-
-
-
+import { HttpModule } from '@angular/http';
+import { AuthModule } from './auth.module';
 
 
 
@@ -51,7 +48,7 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
   ],
 
   providers: [
-
+    AuthModule,
     AuthGuard,
     AuthService
   ],
