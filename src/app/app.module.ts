@@ -19,10 +19,23 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService }  from "./shared/auth.service";
 import { AuthGuard }  from './shared/auth.guard';
 
-import { HttpModule } from '@angular/http';
-import { AuthModule } from './auth.module';
+
+//import { AuthModule } from './auth.module';
 
 
+import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+
+function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+        tokenName: 'token',
+        tokenGetter: (() => localStorage.getItem('id_token')),
+        globalHeaders: [{'Content-Type':'application/json'}],     
+        headerPrefix: '',
+        noTokenScheme: true
+    }), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -48,7 +61,11 @@ import { AuthModule } from './auth.module';
   ],
 
   providers: [
-    AuthModule,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    },
     AuthGuard,
     AuthService
   ],

@@ -4,12 +4,10 @@ import { Http, Headers }  from "@angular/http";
 import { Router }         from "@angular/router";
 import { contentHeaders } from "./headers";
 
-
 import { Observable } from "rxjs/Observable";
 
 import { AuthHttp, 
          AuthConfig, 
-         AUTH_PROVIDERS, 
          JwtHelper }      from 'angular2-jwt';
 
 @Injectable()
@@ -20,15 +18,16 @@ export class AuthService {
 
   jwtHelper: JwtHelper = new JwtHelper();
   
-
-  constructor(private router: Router, public http: Http) {}
+  constructor( public authHttp: AuthHttp, private router: Router, public http: Http) {}
 
   signinUser(user: User) {
 
     console.log("user", user);
+    console.log("this.authHttp", this.authHttp);
 
     let body = JSON.stringify({ login: { user: user.username, email: user.email, password: user.password } });
     this.http.post(this.base, body, { headers: contentHeaders })
+    //this.authHttp.get(this.base)
       .subscribe(
         response => {
 
