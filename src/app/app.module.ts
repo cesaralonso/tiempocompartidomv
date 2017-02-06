@@ -24,9 +24,6 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 
 
-function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig(), http, options);
-}
 
 
 
@@ -54,11 +51,7 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
   ],
 
   providers: [
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
-    },
+
     AuthGuard,
     AuthService
   ],
