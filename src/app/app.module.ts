@@ -14,11 +14,10 @@ import { LoginComponent } from './login/login.component';
 
 import { AgmCoreModule } from "angular2-google-maps/core";
 import { ModalModule } from 'ng2-bootstrap/modal';
-import { AlertModule } from 'ng2-bootstrap/alert';
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AuthService }                from "./shared/auth.service";
-import { AuthGuard }                  from './shared/auth.guard';
+import { AuthService }  from "./shared/auth.service";
+import { AuthGuard }  from './shared/auth.guard';
 
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -27,12 +26,11 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
-    tokenName: 'token',
-        tokenGetter: (() => localStorage.getItem('id_token')),
+        tokenName: 'token',
+        tokenGetter: (() => sessionStorage.getItem('token')),
         globalHeaders: [{'Content-Type':'application/json'}]
     }), http, options);
 }
-
 
 
 
@@ -48,7 +46,6 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
   ],
   imports: [
     ReactiveFormsModule,
-    AlertModule.forRoot(),
     ModalModule.forRoot(),
     BrowserModule,
     FormsModule,
