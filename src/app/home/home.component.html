@@ -51,7 +51,32 @@
                 </h3>
                 <div class="Latest__content">
                     <div class="owl-carousel owl-theme">
+
+                        <div height="300" appListado [membresia]="'green'" ></div>
+
                         
+                        <div class="item" *ngFor="let membresia of destacadas">
+                            <div class="Card">
+                                <div class="Card__Image">
+                                    <img src="assets/img/beach.jpeg" alt="">
+                                </div>
+                                <div class="Card__Content">
+                                    <h4 class="Card__Content__Title">
+                                        {{membresia.enlace_des}}
+                                    </h4>
+                                    <p class="Card__Content__Description">
+                                        {{membresia.precio_renta}}  {{membresia.precio_venta}}
+                                    </p>
+                                    <div class="Card__Actions no-padding-sides">
+                                        <a href="/property/{{membresia.enlace}}{{membresia.idMem}}/" class="btn btn-primary-outline">
+                                            Ver propiedad
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         
                         <div class="item" *ngFor="let membresia of destacadas">
                             <div class="Card">

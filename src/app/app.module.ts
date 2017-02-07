@@ -19,11 +19,13 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService }  from "./shared/auth.service";
 import { HomeService }  from "./home/home.service";
 import { AuthGuard }  from './shared/auth.guard';
-import { AuthModule }  from './auth.module';
+import { AuthModule }  from './auth/auth.module';
 
 
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { ListadoDirective } from './shared/listado.directive';
+
 
 
 
@@ -35,7 +37,8 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
     PropertyComponent,
     SearchComponent,
     FaqsComponent,
-    LoginComponent
+    LoginComponent,
+    ListadoDirective
   ],
   imports: [
     ReactiveFormsModule,

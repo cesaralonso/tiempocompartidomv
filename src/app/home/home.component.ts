@@ -15,25 +15,21 @@ import { Property } from "../shared/property.model";
 })
 export class HomeComponent implements OnInit {
 
-  destacadas: Property;
+  destacadas: Property[];
   msgError: string;
   msgSuccess: string;
 
   constructor(public http: Http, private service: HomeService) { }
 
-
   ngOnInit() {
     this.getDestacadas();
   }
 
-
   getDestacadas() {
-
     this.service.getDestacadas()
                 .subscribe(
                   destacadas => this.destacadas = destacadas,
                   error => this.msgError = error);
   }
-
 
 }

@@ -4,6 +4,8 @@ import { Http, Headers }  from "@angular/http";
 import { Router }         from "@angular/router";
 import { contentHeaders } from "./headers";
 
+import { environment } from '../../environments/environment';
+
 import { Observable } from "rxjs/Observable";
 
 import { AuthHttp, 
@@ -13,7 +15,7 @@ import { AuthHttp,
 @Injectable()
 export class AuthService {
 
-  private base = 'http://localhost/ngtiempocompartido/api/v1/login';
+  private base = environment.base_api;
   public username: string;
 
   jwtHelper: JwtHelper = new JwtHelper();
@@ -25,7 +27,7 @@ export class AuthService {
     console.log("user", user);
 
     let body = JSON.stringify({ login: { user: user.username, email: user.email, password: user.password } });
-    this.http.post(this.base, body, { headers: contentHeaders })
+    this.http.post(this.base + 'login', body, { headers: contentHeaders })
     //this.authHttp.get(this.base)
       .subscribe(
         response => {
