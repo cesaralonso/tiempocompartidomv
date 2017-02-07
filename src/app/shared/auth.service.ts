@@ -18,12 +18,11 @@ export class AuthService {
 
   jwtHelper: JwtHelper = new JwtHelper();
   
-  constructor( public authHttp: AuthHttp, private router: Router, public http: Http) {}
+  constructor( private router: Router, public http: Http) {}
 
   signinUser(user: User) {
 
     console.log("user", user);
-    console.log("this.authHttp", this.authHttp);
 
     let body = JSON.stringify({ login: { user: user.username, email: user.email, password: user.password } });
     this.http.post(this.base, body, { headers: contentHeaders })
